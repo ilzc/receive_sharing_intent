@@ -231,10 +231,11 @@ public class SharedMediaFile: Codable {
 public enum SharedMediaType: String, Codable, CaseIterable {
     case image
     case video
+    case url
     case text
 //     case audio
     case file
-    case url
+    
 
     public var toUTTypeIdentifier: String {
         if #available(iOS 14.0, *) {
@@ -243,14 +244,14 @@ public enum SharedMediaType: String, Codable, CaseIterable {
                 return UTType.image.identifier
             case .video:
                 return UTType.movie.identifier
+            case .url:
+                return UTType.url.identifier
             case .text:
                 return UTType.text.identifier
     //         case .audio:
     //             return UTType.audio.identifier
             case .file:
                 return UTType.fileURL.identifier
-            case .url:
-                return UTType.url.identifier
             }
         }
         switch self {
@@ -258,14 +259,14 @@ public enum SharedMediaType: String, Codable, CaseIterable {
             return "public.image"
         case .video:
             return "public.movie"
+        case .url:
+            return "public.url"
         case .text:
             return "public.text"
 //         case .audio:
 //             return "public.audio"
         case .file:
             return "public.file-url"
-        case .url:
-            return "public.url"
         }
     }
 }
